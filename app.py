@@ -44,6 +44,7 @@ def submit_score():
         screen_height=data['screen_height'],
         ip_address=ip_address
     )
+    # time.sleep(1.5)  # for test purposes to demonstrate async I/O :-)
     db.session.add(new_score)
     db.session.commit()
     return jsonify({'message': 'Score submitted successfully!'})
@@ -51,7 +52,8 @@ def submit_score():
 
 @app.route('/get_scores', methods=['GET'])
 def get_scores():
-    scores = Result.query.order_by(Result.score.desc()).all()
+    n = request.args.get('n', default=50, type=int)
+    scores = Result.query.order_by(Result.score.desc()).limit(n).all()
     output = []
     for score in scores:
         score_data = {
