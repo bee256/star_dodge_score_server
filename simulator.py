@@ -57,29 +57,22 @@ if __name__ == '__main__':
     # get_scores()
 
     names = [
-        'Liam Wang',
-        'Ethan Patel',
-        'Lucas Santos',
-        'Noah Kim',
-        'Mason Chen',
-        'Alexander Ivanov',
-        'Daniel Müller',
-        'James Takahashi',
-        'William Garcia',
-        'Michael López',
-        'Emma Nguyen',
-        'Olivia Sharma',
-        'Ava Smith',
-        'Sophia Dubois',
-        'Isabella Fernandez',
-        'Mia Rossi',
-        'Charlotte Li',
-        'Amelia Johnson',
-        'Harper Brown',
-        'Evelyn Jones'
+        "Liam Smith", "Emma Johnson", "Noah Brown", "Olivia Jones", "William Garcia",
+        "Ava Martinez", "James Rodriguez", "Isabella Hernandez", "Benjamin Lopez", "Sophia Gonzalez",
+        "Lucas Wilson", "Mia Anderson", "Henry Thomas", "Amelia Taylor", "Alexander Moore",
+        "Charlotte Jackson", "Sebastian Lee", "Evelyn Perez", "Michael Thompson", "Abigail White",
+        "Elijah Harris", "Emily Lewis", "Daniel Walker", "Harper Hall", "Matthew Allen",
+        "Ella Young", "Joseph King", "Aria Wright", "David Scott", "Avery Green",
+        "Samuel Adams", "Lily Nelson", "Gabriel Baker", "Chloe Carter", "Anthony Rivera",
+        "Layla Mitchell", "Jack Campbell", "Zoe Roberts", "Christopher Carter", "Riley Diaz",
+        "Andrew Edwards", "Nora Murphy", "Joshua Rivera", "Scarlett Torres", "Nathan Wood",
+        "Hannah Ramirez", "Ryan Hughes", "Sofia Kim", "Jacob Flores", "Madison Morris"
     ]
 
-    for name_ in names:
+    # Randomly select 20 names from the list
+    selected_names = random.sample(names, 20)
+
+    for name_ in selected_names:
         score_ = random.uniform(20, 160)
         submit_score(name_, score_)
         time.sleep(2)
