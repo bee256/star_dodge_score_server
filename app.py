@@ -15,6 +15,8 @@ class Result(db.Model):
     nickname = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(100), nullable=True)
     score = db.Column(db.Float, nullable=False)
+    level = db.Column(db.Integer, nullable=False, default=0)
+    stage = db.Column(db.Integer, nullable=False, default=0)
     date_time = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     secs_since_epoch = db.Column(db.Float, default=time.time())
     computer_name = db.Column(db.String(50), nullable=False)
@@ -32,12 +34,18 @@ def ping():
 @app.route('/submit_score', methods=['POST'])
 def submit_score():
     data = request.get_json()
+    if 'level' not in data:
+        data['level'] = 0
+    if 'stage' not in data:
+        data['stage'] = 0
     ip_address = request.remote_addr
     new_score = Result(
         name=data['name'],
         nickname=data['nickname'],
         email=data['email'],
         score=float(data['score']),
+        level=data['level'],
+        stage=data['stage'],
         computer_name=data['computer_name'],
         os=data['os'],
         screen_width=data['screen_width'],
@@ -61,6 +69,8 @@ def get_scores():
             'nickname': score.nickname,
             'email': score.email,
             'score': score.score,
+            'level': score.level,
+            'stage': score.stage,
             'date_time': score.date_time,
             'computer_name': score.computer_name,
             'os': score.os,
